@@ -26,11 +26,11 @@ class Island:
         self.alpha = alpha
         self.theta = theta
         self.num = num
-        self.s = s
+        self.s = np.pi * r * l
 
     def deltaS(self, t):
         dH = Island.fun(t) - Island.fun(0)
-        dL = dH / np.cos(self.alpha)
+        dL = min(dH / np.cos(self.alpha), self.l)
         return .5 * self.theta * dL * (self.l * 2 - dL)
 
     def delta2S(self, t):
@@ -40,3 +40,6 @@ class Island:
 
     def deltaN(self, t):
         return self.delta2S(t) / self.s * self.num
+
+    def leftN(self, t):
+        return self.num * (1 - self.deltaS(t) / self.s)
