@@ -1,11 +1,12 @@
 import xlrd
 import os
 
+_path = os.path.realpath(os.getcwd())
 os.chdir(os.path.dirname(__file__))
+_table = xlrd.open_workbook("Countries of the world.xls")
 
 def fromCountries(_list: list) -> dict:
-    table = xlrd.open_workbook("Countries of the world.xls")
-    sheet: xlrd.sheet.Sheet = table.sheet_by_index(0)
+    sheet: xlrd.sheet.Sheet = _table.sheet_by_index(0)
     ret = {}
     count = {}
     for i in range(5, sheet.nrows):
@@ -41,3 +42,5 @@ if __name__ == "__main__":
         "Tuvalu", "Nauru", "Palau"
     ])
     print(ret)
+
+os.chdir(_path)
