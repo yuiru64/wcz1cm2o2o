@@ -29,14 +29,14 @@ class Island:
         self.s = s
 
     def deltaS(self, t):
-        dH = ZzyIsland.fun(t) - ZzyIsland.fun(0)
+        dH = Island.fun(t) - Island.fun(0)
         dL = dH / np.cos(self.alpha)
         return .5 * self.theta * dL * (self.l * 2 - dL)
 
     def delta2S(self, t):
         if t < 1:
             raise Exception("t should >= 1")
-        return self.deltaS(t) - self.delta2S(t - 1)
+        return self.deltaS(t) - self.deltaS(t - 1)
 
-    def deltaN(self):
-        return self.delta2S / self.s / self.num
+    def deltaN(self, t):
+        return self.delta2S(t) / self.s * self.num

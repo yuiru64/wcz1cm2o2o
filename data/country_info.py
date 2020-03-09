@@ -12,7 +12,13 @@ def fromCountries(_list: list) -> dict:
         key = sheet.cell_value(i, 0).strip()
         if key is None:
             break
-        if key in _list:
+        flag = False
+        for it in _list:
+            if it in key:
+                flag = True
+                key = it
+                break
+        if flag:
             if key not in ret:
                 ret[key] = {
                     "population": sheet.cell_value(i, 2),   # population

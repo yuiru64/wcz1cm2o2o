@@ -3,7 +3,7 @@ import os
 
 os.chdir(os.path.dirname(__file__))
 
-data = """0.04 0.11 0.24 0.41 0.63 0.90 1.2 1.6 2.0 2.5 3.6 5.5 9.7"""
+data = "0.04 0.11 0.24 0.41 0.63 0.90 1.2 1.6 2.0 2.5 3.6 5.5 9.7"
 level = data.split(" ")
 level = [float(i) for i in level]
 
